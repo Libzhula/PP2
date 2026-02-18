@@ -1,5 +1,5 @@
 import json
-with open('lab 4/JSON/sample-data.json', 'r', encoding='utf-8') as file:
+with open('sample-data.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 dn = [item['l1PhysIf']['attributes']['dn'] for item in data['imdata']]
 speed = [item['l1PhysIf']['attributes']['speed'] for item in data['imdata']]
