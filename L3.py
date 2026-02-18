@@ -1,16 +1,28 @@
-class coordinate(object):
-    def __init__ (self, xval, yval):
-        self.x = xval
-        self.y = yval
-    def distance (self, other):
-        x_diff_sq = (self.x - other.x) ** 2
-        y_diff_sq = (self.y - other.y) ** 2
-        return (x_diff_sq + y_diff_sq) ** 0.5
+n = int(input())
+arr = list(map(int, input().split()))
 
-home = coordinate(0,0)
-job = coordinate(2147483647, 2147483647)
-uni = coordinate(10, 31)
+q = int(input())
+ops = []
 
-print(home.distance(uni))
-print(uni.distance(job))
+for _ in range(q):
+    parts = input().split()
+    
+    if parts[0] == "add":
+        x = int(parts[1])
+        ops.append(lambda a, x=x: a + x)
+        
+    elif parts[0] == "multiply":
+        x = int(parts[1])
+        ops.append(lambda a, x=x: a * x)
+        
+    elif parts[0] == "power":
+        x = int(parts[1])
+        ops.append(lambda a, x=x: a ** x)
+        
+    elif parts[0] == "abs":
+        ops.append(lambda a: abs(a))
 
+for f in ops:
+    arr = list(map(f, arr))
+
+print(*arr)
